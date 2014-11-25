@@ -3,14 +3,15 @@
 /*@font-face {
 	
 	font: {
-		family: "FontName";
+		family: "Rotonda";
 		weight: 100;
 		style: normal;
 	}
-	src: url("../fonts/FontName/regular.eot");
-	src: url("../fonts/FontName/regular.eot?#iefix") format("embedded-opentype"),
-		 url("../fonts/FontName/regular.woff") format("woff"),
-		 url("../fonts/FontName/regular.ttf") format("truetype");
+	src: url("../fonts/Rotonda/Rotonda.eot");
+	src: url("../fonts/Rotonda/Rotonda.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/Rotonda/Rotonda.woff") format("woff"),
+		 url("../fonts/Rotonda/Rotonda.ttf") format("truetype"),
+		 url('Rotonda.svg#Rotonda') format('svg');
 }
 
 @mixin FontNameRegular($font-size, $line-height) {
@@ -20,6 +21,95 @@
 	font-size: $font-size;
 	line-height: $line-height;
 }*/
+
+@font-face {
+	
+	font: {
+		family: "Rotonda";
+		weight: 100;
+		style: normal;
+	}
+	src: url("../fonts/Rotonda/Rotonda.eot");
+	src: url("../fonts/Rotonda/Rotonda.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/Rotonda/Rotonda.woff") format("woff"),
+		 url("../fonts/Rotonda/Rotonda.ttf") format("truetype"),
+		 url('../fonts/Rotonda/Rotonda.svg#Rotonda') format('svg');
+}
+
+@mixin Rotonda($font-size, $line-height) {
+
+	font-family: "Rotonda", Arial, sans-serif;
+	font-weight: normal;
+	font-size: $font-size;
+	line-height: $line-height;
+}
+
+@font-face {
+	
+	font: {
+		family: "Rotonda-Bold";
+		weight: 100;
+		style: normal;
+	}
+	src: url("../fonts/Rotonda-Bold/Rotonda-Bold.eot");
+	src: url("../fonts/Rotonda-Bold/Rotonda-Bold.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/Rotonda-Bold/Rotonda-Bold.woff") format("woff"),
+		 url("../fonts/Rotonda-Bold/Rotonda-Bold.ttf") format("truetype"),
+		 url('../fonts/Rotonda-Bold/Rotonda-Bold.svg#Rotonda-Bold') format('svg');
+}
+
+@mixin Rotonda-Bold($font-size, $line-height) {
+
+	font-family: "Rotonda-Bold", Arial, sans-serif;
+	font-weight: normal;
+	font-size: $font-size;
+	line-height: $line-height;
+}
+
+@font-face {
+	
+	font: {
+		family: "Noteworthy";
+		weight: 100;
+		style: normal;
+	}
+	src: url("../fonts/Noteworthy-Light/Noteworthy-Light.eot");
+	src: url("../fonts/Noteworthy-Light/Noteworthy-Light.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/Noteworthy-Light/Noteworthy-Light.woff") format("woff"),
+		 url("../fonts/Noteworthy-Light/Noteworthy-Light.ttf") format("truetype"),
+		 url('../fonts/Noteworthy-Light/Noteworthy-Light.svg#Rotonda-Bold') format('svg');
+}
+
+@mixin Noteworthy($font-size, $line-height) {
+
+	font-family: "Noteworthy", Arial, sans-serif;
+	font-weight: normal;
+	font-size: $font-size;
+	line-height: $line-height;
+}
+
+
+@font-face {
+	
+	font: {
+		family: "Noteworthy-Bold";
+		weight: 100;
+		style: normal;
+	}
+	src: url("../fonts/Noteworthy-Bold/Noteworthy-Bold.eot");
+	src: url("../fonts/Noteworthy-Bold/Noteworthy-Bold.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/Noteworthy-Bold/Noteworthy-Bold.woff") format("woff"),
+		 url("../fonts/Noteworthy-Bold/Noteworthy-Bold.ttf") format("truetype"),
+		 url('../fonts/Noteworthy-Bold/Noteworthy-Bold.svg#Rotonda-Bold') format('svg');
+}
+
+@mixin Noteworthy-Bold($font-size, $line-height) {
+
+	font-family: "Noteworthy-Bold", Arial, sans-serif;
+	font-weight: normal;
+	font-size: $font-size;
+	line-height: $line-height;
+}
 
 @mixin BaseFont($font-size, $line-height) {
 

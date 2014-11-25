@@ -1,0 +1,8 @@
+
+@font-face {
+  font-family: 'Rotonda-Bold';
+  src: url('Rotonda-Bold.eot?#iefix') format('embedded-opentype'),  url('Rotonda-Bold.otf')  format('opentype'),
+	     url('Rotonda-Bold.woff') format('woff'), url('Rotonda-Bold.ttf')  format('truetype'), url('Rotonda-Bold.svg#Rotonda-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
