@@ -7,8 +7,7 @@
 
 			"primary": [
 				{
-					"link": "",
-					"template": "index",
+					"template": "about",
 					"title": "О канале"
 				}, 
 				{

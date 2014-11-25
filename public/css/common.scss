@@ -12,7 +12,7 @@ body, input, textarea, select, button {
 html {
 
 	height: auto;
-	min-height: 100%;
+	height: 100%;
 }
 
 body {
@@ -80,41 +80,58 @@ button::-moz-focus-inner {
 	display: none !important;
 }
 
-.l-header, .l-content {
-
-	margin: 0 auto;
-	@include Font(0, 0);
-}
-
 .l-header {
 
-	padding: 0 0 140px;
+	min-width: $min-page-width;
+
+	&-inside {
+
+		margin: 0 auto;
+		padding: 0 0 140px;
+		@include Font(0, 0);
+	}
 }
 
 .l-content {
 
-	position: relative;
-	margin: 60px auto 0;
-	background: rgba(177,210,235,.9);
-	border-radius: 5px;
-	@include shadow(0, 0, 60px, #318aca, inset);
+	box-sizing: border-box;
+	min-height: 100%;
+	min-width: $min-page-width;
+	padding: 236px 0 294px;
+	margin: -236px 0 -294px;
 
-	&:before {
+	&-inside {
 
-		content: "";
-		display: block;
-		position: absolute;
-		top: -30px;
-		left: -26px;
-		right: -23px;
-		height: 134px;
-		background-image: url(../i/snow.png);
+		position: relative;
+		margin: 60px auto 0;
+		min-height: 150px;
+		background: rgba(177,210,235,.9);
+		border-radius: 5px;
+		@include Font(0, 0);
+		@include shadow(0, 0, 60px, #318aca, inset);
+
+		&:before {
+
+			content: "";
+			display: block;
+			position: absolute;
+			top: -30px;
+			left: -26px;
+			right: -23px;
+			height: 134px;
+			background-image: url(../i/snow.png);
+		}
 	}
 }
 
 .l-footer {
 
-	margin: 0 auto;
+	min-width: $min-page-width;
+
+	&-inside {
+
+		margin: 0 auto;
+	}
 }
 
 .b-logo {
@@ -177,12 +194,158 @@ button::-moz-focus-inner {
 
 .b-form {
 
-	padding: 75px 50px;
-	@include Font(16px, 20px);
+	padding: 75px 35px;
+	color: #0c5fa5;
 
 	&-title {
 
-		
+		padding: 0 15px 20px;
+		@include Rotonda-Bold(41px, 48px);
+	}
+
+	&-fieldset {
+
+		display: block;
+		box-sizing: border-box;
+		@include Font(16px, 20px);
+		padding: 0 15px 10px;
+		position: relative;
+
+		&.b-form-name-fieldset {
+
+			width: 375px;
+		}
+
+		&.b-form-phone-fieldset {
+
+			width: 375px;
+		}
+
+		&.b-form-text-fieldset {
+
+			float: right;
+			width: 515px;
+			height: 188px;
+			margin: -188px 0 0;
+		}
+
+		&.b-form-rules-fieldset {
+
+			float: left;
+		}
+
+		&.b-form-submit-fieldset {
+
+			float: left;
+		}
+
+		&-title {
+
+			@include Noteworthy-Bold(28px, 30px);
+
+			&:after {
+
+				content: ":";
+			}
+		}
+
+		&-notice {
+
+			position: absolute;
+			top: 0;
+			right: 15px;
+			text-align: right;
+			text-transform: lowercase;
+			@include Noteworthy(16px, 20px);
+		}
+	}
+
+	.b-form-captcha-fieldset {
+
+		width: 375px;
+		float: left;
+		@include Font(0,0);
+
+		&-picture {
+
+			display: inline-block;
+			line-height: 46px;
+			height: 46px;
+			vertical-align: top;
+			width: 225px;
+			text-align: right;
+
+			&-entity {
+
+				display: inline-block;
+				vertical-align: middle;
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
+	}
+
+	&-text-field {
+
+		width: 100%;
+		border: 3px solid #fff;
+		border-radius: 8px;
+		margin: 5px -3px 0;
+
+		.b-form-captcha-fieldset & {
+
+			width: 105px;
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 -3px 0 10px;
+		}
+
+		&-entity {
+
+			width: 100%;
+			border: none;
+			border-radius: 8px;
+			margin: 0;
+			box-sizing: border-box;
+			padding: 11px 8px;
+			background: #73a7cc;
+			color: #fff;
+			@include shadow(3px, 4px, 0, #41647f, inset);
+			@include BaseFont(16px, 18px);
+		}
+	}
+
+	&-textarea-field {
+
+		width: 100%;
+		border: 3px solid #fff;
+		border-radius: 8px;
+		margin: 5px -3px 0;
+		box-sizing: border-box;
+		padding: 13px 8px;
+		background: #73a7cc;
+		color: #fff;
+		height: 140px;
+		resize: none;
+		@include shadow(3px, 4px, 0, #41647f, inset);
+		@include BaseFont(16px, 18px);
+	}
+}
+
+.b-errors-article {
+
+	padding: 100px 50px;
+	color: #0c5fa5;
+	text-align: center;
+
+	&-title {
+
+		@include Rotonda-Bold(200px, 240px);
+	}
+
+	&-description {
+
+		@include Rotonda-Bold(50px, 60px);
 	}
 }
 
