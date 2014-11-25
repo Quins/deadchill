@@ -98,6 +98,27 @@ button::-moz-focus-inner {
 	background-repeat: no-repeat;
 }
 
+.l-content {
+
+	position: relative;
+	margin: 60px auto 0;
+	background: rgba(177,210,235,.9);
+	border-radius: 5px;
+	@include shadow(0, 0, 60px, #318aca, inset);
+
+	&:before {
+
+		content: "";
+		display: block;
+		position: absolute;
+		top: -30px;
+		left: -26px;
+		right: -23px;
+		height: 134px;
+		background-image: url(../i/snow.png);
+	}
+}
+
 .b-logo {
 	
 	display: inline-block;
@@ -166,17 +187,14 @@ button::-moz-focus-inner {
 	}
 }
 
-.b-article {
-	padding: 0 0 100px;
-	&-form {
+.b-form {
 
-		margin: 0 auto;
-		width: 960px;
-		height: 572px;
-		@include Font(45px, 600px);
-		text-align: center;
-		color: #fff;
-		background-color: #318aca;
+	padding: 75px 50px;
+	@include Font(16px, 20px);
+
+	&-title {
+
+		
 	}
 }
 
