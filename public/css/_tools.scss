@@ -115,6 +115,16 @@
 	filter: alpha(opacity=$opacity-ie); //IE8
 }
 
+// Cross-browser box-shadow
+// Usage: 
+// @include shadow(3px, -5px, 42px, rgba(0,1,2,.3));
+
+@mixin shadow($x, $y, $spread, $color, $inset: "") {
+	-moz-box-shadow: $inset $x $y $spread $color;
+	-webkit-box-shadow: $inset $x $y $spread $color;
+	box-shadow: $inset $x $y $spread $color;
+}
+
 // Sprite in background
 // Usage: 
 // @include graphics(-100px, 0);
