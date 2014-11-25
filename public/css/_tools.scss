@@ -1,0 +1,211 @@
+// Vertical gradient from top to bottom
+// Usage: 
+// @include vertical-gradient(#aaaaaa, #bbbbbb);
+// or: 
+// @include vertical-gradient(rgba(255,255,255,.3), black, transparent);
+
+@mixin vertical-gradient($topcolor, $bottomcolor, $fallback: null) {
+
+	@if ($fallback) {
+		background: $fallback;
+	} @else {
+		background: $topcolor;
+	}
+
+	background:    -moz-linear-gradient(top, $topcolor 0%, $bottomcolor 100%); // FF3.6+ 
+	background:        -webkit-gradient(linear, left top, left bottom, color-stop(0%, $topcolor), color-stop(100%, $bottomcolor)); // Chrome, Safari4+
+	background: -webkit-linear-gradient(top, $topcolor 0%, $bottomcolor 100%); // Chrome10+, Safari5.1+
+	background:      -o-linear-gradient(top, $topcolor 0%, $bottomcolor 100%); // Opera 11.10+
+	background:     -ms-linear-gradient(top, $topcolor 0%, $bottomcolor 100%); // IE10+
+	background:         linear-gradient(to bottom, $topcolor 0%, $bottomcolor 100%); // W3C
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{ie-hex-str($topcolor)}', endColorstr='#{ie-hex-str($bottomcolor)}', GradientType=0 ); // IE6-9
+}
+
+// Horizontal gradient from left to right
+// Usage: 
+// @include horizontal-gradient(#aaaaaa, #bbbbbb);
+// or: 
+// @include horizontal-gradient(rgba(255,255,255,.3), black, transparent);
+
+@mixin horizontal-gradient($leftcolor, $rightcolor, $fallback: null) {
+
+	@if ($fallback) {
+		background: $fallback;
+	} @else {
+		background: $leftcolor;
+	}
+
+	background:    -moz-linear-gradient(left, $leftcolor 0%, $rightcolor 100%); // FF3.6+ 
+	background:        -webkit-gradient(linear, left top, right top, color-stop(0%, $leftcolor), color-stop(100%, $rightcolor)); // Chrome, Safari4+
+	background: -webkit-linear-gradient(left, $leftcolor 0%, $rightcolor 100%); // Chrome10+, Safari5.1+
+	background:      -o-linear-gradient(left, $leftcolor 0%, $rightcolor 100%); // Opera 11.10+
+	background:     -ms-linear-gradient(left, $leftcolor 0%, $rightcolor 100%); // IE10+
+	background:         linear-gradient(to right, $leftcolor 0%, $rightcolor 100%); // W3C
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{ie-hex-str($leftcolor)}', endColorstr='#{ie-hex-str($rightcolor)}', GradientType=1 ); // IE6-9
+}
+
+// Cross-browser transition
+// Usage: 
+// @include transition(color .3s ease);
+
+@mixin transition($args...) {
+
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-ms-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+}
+
+// Cross-browser animation
+// Usage:
+//
+// Define keyframes: 
+// @include keyframes(slide-down) {
+// 	0% { opacity: 1; }
+// 	90% { opacity: 0; }
+// }
+//
+// Animate: 
+// @include animation('slide-down 5s 3');
+
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes $animation-name {
+		@content;
+	}
+	@-moz-keyframes $animation-name {
+		@content;
+	}  
+	@-ms-keyframes $animation-name {
+		@content;
+	}
+	@-o-keyframes $animation-name {
+		@content;
+	}  
+	@keyframes $animation-name {
+		@content;
+	}
+}
+
+@mixin animation($str) {
+	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-ms-animation: #{$str};
+	-o-animation: #{$str};
+	animation: #{$str};
+}
+
+// Filter for webkit & html5
+// Usage: 
+// @include filter(brightness(140%));
+
+@mixin filter($filter) {
+
+	-webkit-filter: $filter;
+	filter: $filter;
+}
+
+// Cross-browser opacity
+// Usage: 
+// @include opacity(0.8);
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Sprite in background
+// Usage: 
+// @include graphics(-100px, 0);
+
+@mixin graphics($x, $y) {
+
+	background: transparent url(../i/graphics.png) no-repeat $x $y;
+}
+
+// Background cover picture
+// Usage: 
+// @include cover(icon.png);
+
+@mixin cover($picture) {
+
+	background: transparent url(../i/#{$picture}) no-repeat 50% 50%;
+	background-size: cover;
+}
+
+// Cross-browser placeholder
+// Usage: 
+// @include placeholder {
+// 	rule: value;
+// }
+
+@mixin placeholder {
+
+	&::-webkit-input-placeholder {
+		@content;
+	}
+	&:-moz-placeholder { 
+		@content;
+	}
+	&::-moz-placeholder { 
+		@content;
+	}
+	&:-ms-input-placeholder { 
+		@content;
+	}
+}
+
+// Media query shortcut
+// Usage: 
+// @include mq(123) {
+// 	rule: value;
+// }
+// or:
+// @include mq(retina) {
+// 	rule: value;
+// }
+
+@mixin mq($mq) {
+
+	@if ($mq == retina) {
+
+		@media
+		only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (   min--moz-device-pixel-ratio: 2),
+		only screen and (     -o-min-device-pixel-ratio: 2/1),
+		only screen and (        min-device-pixel-ratio: 2),
+		only screen and (                min-resolution: 192dpi),
+		only screen and (                min-resolution: 2dppx) {
+			@content;
+		}
+
+	} @else if ($mq == ipad) {
+
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) { @content; }
+
+	} @else if ($mq == ipad-landscape) {
+
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) { @content; }
+
+	} @else if ($mq == ipad-portrait) {
+
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) { @content; }
+
+	} @else if ($mq == iphone) {
+
+		@media only screen and (min-device-width : 320px) and (max-device-width : 568px) { @content; }
+
+	} @else if ($mq == iphone-landscape) {
+
+		@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation: landscape) { @content; }
+
+	} @else if ($mq == iphone-portrait) {
+
+		@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation: portrait) { @content; }
+
+	} @else {
+
+		@media (max-width: #{$mq}px)  { @content; }
+	}
+}

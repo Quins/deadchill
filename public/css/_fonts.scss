@@ -1,0 +1,37 @@
+/* Fonts (including not standart fonts) */
+
+/*@font-face {
+	
+	font: {
+		family: "FontName";
+		weight: 100;
+		style: normal;
+	}
+	src: url("../fonts/FontName/regular.eot");
+	src: url("../fonts/FontName/regular.eot?#iefix") format("embedded-opentype"),
+		 url("../fonts/FontName/regular.woff") format("woff"),
+		 url("../fonts/FontName/regular.ttf") format("truetype");
+}
+
+@mixin FontNameRegular($font-size, $line-height) {
+
+	font-family: "FontName", Arial, sans-serif;
+	font-weight: 100;
+	font-size: $font-size;
+	line-height: $line-height;
+}*/
+
+@mixin BaseFont($font-size, $line-height) {
+
+	font-family: "Helvetica", Arial, sans-serif;
+	font-weight: normal;
+	font-size: $font-size;
+	line-height: $line-height;
+}
+
+@mixin Font($font-size, $line-height) {
+
+	font-size: $font-size;
+	line-height: $line-height;
+}
+

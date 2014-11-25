@@ -1,0 +1,10 @@
+@import "_tools";
+@import "_variables";
+
+@media (min-width: $max-gadget + 1px)  { 
+
+	.g-portable {
+
+		display: none !important;
+	}
+}

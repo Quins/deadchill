@@ -1,0 +1,34 @@
+{
+	"globals": {
+		"project": {
+			"title": "Телеканал Деда Мороза"
+		},
+		"navigation": {
+
+			"primary": [
+				{
+					"link": "",
+					"template": "index",
+					"title": "О канале"
+				}, 
+				{
+					"template": "letter",
+					"title": "Письмо Деду\u00A0Морозу"
+				}, 
+				{
+					"template": "schedule",
+					"title": "Программа передач"
+				}, 
+				{
+					"template": "watch",
+					"title": "Хочу смотреть"
+				}, 
+				{
+					"template": "prophecy",
+					"title": "Предсказание"
+				}
+			]
+		}
+	},
+	"domains": []
+}
