@@ -4,7 +4,7 @@
 	
 	font: {
 		family: "Rotonda";
-		weight: 100;
+		weight: 300;
 		style: normal;
 	}
 	src: url("../fonts/Rotonda/Rotonda.eot");
@@ -17,7 +17,7 @@
 @mixin FontNameRegular($font-size, $line-height) {
 
 	font-family: "FontName", Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: $font-size;
 	line-height: $line-height;
 }*/

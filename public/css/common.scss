@@ -22,7 +22,6 @@ body {
 	position: relative;
 	text-rendering: optimizelegibility;
 	-webkit-font-smoothing: antialiased;
-	// @include cover('../i/background.jpg');
 	background: transparent url('../i/background.jpg');
 	background-position: 50% 0;
 	background-repeat: no-repeat;
@@ -87,6 +86,7 @@ button::-moz-focus-inner {
 	&-inside {
 
 		margin: 0 auto;
+		position: relative;
 		padding: 0 0 140px;
 		@include Font(0, 0);
 	}
@@ -126,6 +126,10 @@ button::-moz-focus-inner {
 
 .l-footer {
 
+	padding: 100px 0 0 0;
+	background: transparent url('../i/footer-background.png');
+	background-position: 50% 0;
+	background-repeat: no-repeat;
 	min-width: $min-page-width;
 
 	&-inside {
@@ -137,6 +141,7 @@ button::-moz-focus-inner {
 .b-logo {
 	
 	display: inline-block;
+	margin: 0 0 0 -208px;
 	width: 235px;
 	vertical-align: top;
 
@@ -156,20 +161,29 @@ button::-moz-focus-inner {
 	}
 }
 
+	.b-logo-rostelecom-link:after {
+		
+		position: absolute;
+		content: "";
+		top: 24px;
+		right: -65px;
+		width: 130px;
+		height: 112px;
+		@include graphics(0, -63px);
+	}
+
 .b-primary-menu {
 	
 	display: inline-block;
-	box-sizing: border-box;
-	margin: 0 0 0 -235px;
-	padding: 60px 0 0 235px;
+	padding: 60px 0 0 224px;
 	width: 100%;
-	text-align: right;
+	text-align: left;
 	vertical-align: top;
 
 	&-clause {
 
 		display: inline-block;
-		margin: 0 0 0 10px;
+		margin: 0 11px;
 		width: auto;
 		max-width: 110px;
 		text-align: center;
@@ -177,7 +191,7 @@ button::-moz-focus-inner {
 
 		&-link {
 			
-			@include Font(13px, 18px);
+			@include Noteworthy-Bold(13px, 18px);
 			color: #fff;
 			text: {
 				transform: uppercase;
@@ -350,16 +364,21 @@ button::-moz-focus-inner {
 }
 
 .b-footer {
+	position: relative;
+	&-inside {
+		
+		margin: 0 auto;
+		width: $max-width;
+	}
 
 	&-caption {
 
-		padding: 0 0 10px 0;
+		padding: 0 0 5px;
 		@include Rotonda-Bold(28px, normal);
 		color: #0c5fa5;
 	}
 	&-paragraph {
 
-		padding: 0 0 10px;
 		@include Noteworthy-Bold(19px, 25px);
 		color: #0c5fa5;
 
@@ -388,18 +407,19 @@ button::-moz-focus-inner {
 		&-collection {
 			
 			display: inline-block;
-			padding: 0 0 0 20px;
+			padding: 25px 0 16px 10px;
 			
 
 			&-clause {
 
 				display: inline-block;
-				margin: 0 129px 0 0;
+				margin: 0 139px 0 0;
 
 				&-link {
 
 					position: relative;
 					display: block;
+					text-indent: -9999px;
 					line-height: 69px;
 
 					&:after {
@@ -423,46 +443,64 @@ button::-moz-focus-inner {
 					height: 63px;
 					@include graphics(-114px, 0);
 				}
-				&-rostel-link:after {
-
-					top: 0;
-					left: 0;
-					width: 145px;
-					height: 69px;
-					@include graphics(0, -63px);
-				}
 			}
 		}
 	}
 	&-law-section {
 		
 		height: 50px;
+
 		&-agerating-entity {
 			
-			display: inline-block;
+			float: left;
 			width: 60px;
-			@include Font(24px, normal);
+			@include Font(24px, 40px);
 			color: #0c5fa5;
-			vertical-align: middle;
+			vertical-align: top;
 		}
 		&-inside {
 
-			display: inline-block;
+			float: left;
 			width: 480px;
 		}
 
 		&-copy-entity {
 
 			display: inline-block;
+			font-family: "Tahoma", "Helvetica", Arial, sans-serif;
 			@include Font(12px, normal);
 			color: rgba(12, 95, 165, .5);
 		}
 		&-agerating-description {
 
 			display: inline-block;
-			font-family: 'Tahoma', Helvetica, sans;
+			font-family: "Tahoma", "Helvetica", Arial, sans-serif;
 			@include Font(9px, normal);
 			color: rgba(12, 95, 165, .3);
+		}
+	}
+	&-request-section {
+
+		position: absolute;
+		left: 50%;
+		margin-left: 92px;
+		bottom: 0;
+		width: 681px;
+		height: 193px;
+		background: transparent url('../i/request-background.png');
+		background-repeat: no-repeat; 
+		&-link {
+			
+			display: block;
+			margin: 60px 179px;
+			width: 160px;
+			@include Noteworthy(18px, 18px);
+			text-align: center;
+			color: #585858;
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
 	}
 }
