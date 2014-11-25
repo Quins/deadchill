@@ -26,7 +26,7 @@
 	
 	font: {
 		family: "Rotonda";
-		weight: 100;
+		weight: 300;
 		style: normal;
 	}
 	src: url("../fonts/Rotonda/Rotonda.eot");
@@ -39,7 +39,7 @@
 @mixin Rotonda($font-size, $line-height) {
 
 	font-family: "Rotonda", Arial, sans-serif;
-	font-weight: normal;
+	font-weight: 300;
 	font-size: $font-size;
 	line-height: $line-height;
 }
@@ -47,8 +47,8 @@
 @font-face {
 	
 	font: {
-		family: "Rotonda-Bold";
-		weight: 100;
+		family: "Rotonda";
+		weight: 700;
 		style: normal;
 	}
 	src: url("../fonts/Rotonda-Bold/Rotonda-Bold.eot");
@@ -60,8 +60,8 @@
 
 @mixin Rotonda-Bold($font-size, $line-height) {
 
-	font-family: "Rotonda-Bold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: "Rotonda", Arial, sans-serif;
+	font-weight: 700;
 	font-size: $font-size;
 	line-height: $line-height;
 }
@@ -70,7 +70,7 @@
 	
 	font: {
 		family: "Noteworthy";
-		weight: 100;
+		weight: 300;
 		style: normal;
 	}
 	src: url("../fonts/Noteworthy-Light/Noteworthy-Light.eot");
@@ -83,7 +83,7 @@
 @mixin Noteworthy($font-size, $line-height) {
 
 	font-family: "Noteworthy", Arial, sans-serif;
-	font-weight: normal;
+	font-weight: 300;
 	font-size: $font-size;
 	line-height: $line-height;
 }
@@ -92,8 +92,8 @@
 @font-face {
 	
 	font: {
-		family: "Noteworthy-Bold";
-		weight: 100;
+		family: "Noteworthy";
+		weight: 700;
 		style: normal;
 	}
 	src: url("../fonts/Noteworthy-Bold/Noteworthy-Bold.eot");
@@ -105,8 +105,8 @@
 
 @mixin Noteworthy-Bold($font-size, $line-height) {
 
-	font-family: "Noteworthy-Bold", Arial, sans-serif;
-	font-weight: normal;
+	font-family: "Noteworthy", Arial, sans-serif;
+	font-weight: 700;
 	font-size: $font-size;
 	line-height: $line-height;
 }
