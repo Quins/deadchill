@@ -119,7 +119,7 @@
 // Usage: 
 // @include shadow(3px, -5px, 42px, rgba(0,1,2,.3));
 
-@mixin shadow($x, $y, $spread, $color, $inset: "") {
+@mixin shadow($x, $y, $spread, $color, $inset: null) {
 	-moz-box-shadow: $inset $x $y $spread $color;
 	-webkit-box-shadow: $inset $x $y $spread $color;
 	box-shadow: $inset $x $y $spread $color;

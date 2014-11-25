@@ -130,6 +130,7 @@ button::-moz-focus-inner {
 	background: transparent url('../i/footer-background.png');
 	background-position: 50% 0;
 	background-repeat: no-repeat;
+	position: relative;
 	min-width: $min-page-width;
 
 	&-inside {
@@ -246,11 +247,16 @@ button::-moz-focus-inner {
 		&.b-form-rules-fieldset {
 
 			float: left;
+			margin: 20px 0 0;
+			height: 46px;
+			line-height: 46px;
 		}
 
 		&.b-form-submit-fieldset {
 
-			float: left;
+			float: right;
+			width: 180px;
+			margin: 10px 0 0;
 		}
 
 		&-title {
@@ -260,6 +266,21 @@ button::-moz-focus-inner {
 			&:after {
 
 				content: ":";
+			}
+		}
+
+		&-description {
+
+			@include Noteworthy(16px, 20px);
+
+			&-link {
+
+				color: inherit;
+
+				&:hover {
+
+					text-decoration: none;
+				}
 			}
 		}
 
@@ -278,6 +299,7 @@ button::-moz-focus-inner {
 
 		width: 375px;
 		float: left;
+		margin: 20px 0 0;
 		@include Font(0,0);
 
 		&-picture {
@@ -295,6 +317,7 @@ button::-moz-focus-inner {
 				vertical-align: middle;
 				max-width: 100%;
 				max-height: 100%;
+				margin: 8px 0 0;
 			}
 		}
 	}
@@ -343,6 +366,26 @@ button::-moz-focus-inner {
 		resize: none;
 		@include shadow(3px, 4px, 0, #41647f, inset);
 		@include BaseFont(16px, 18px);
+	}
+
+	&-submit-field {
+
+		max-width: 100%;
+		background: #2c7ebd;
+		border: none;
+		border-radius: 10px;
+		padding: 15px 15px 10px;
+		white-space: normal;
+		color: #fff;
+		text-transform: uppercase;
+		text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+		@include Noteworthy(12px, 16px);
+		@include shadow(2px, 1px, 3px, rgba(0,0,0,.75));
+
+		&:hover {
+
+			cursor: pointer;
+		}
 	}
 }
 
