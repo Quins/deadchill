@@ -1,10 +1,14 @@
 <header class="l-header">
 	<div class="l-header-inside g-limited">
-		<h1 class="b-logo"><a href="/" class="b-logo-link">Телеканал Деда Мороза</a></h1>
+		<h1 class="b-logo"><a href="<%= (environment == "production" ? "./index.html" : "/") %>" class="b-logo-link">Телеканал Деда Мороза</a></h1>
 		<ul class="b-primary-menu">
 			<% for (var i = 0; i < navigation.primary.length; i++) { %>
 			<li class="b-primary-menu-clause <% if (current.source == navigation.primary[i].template) { %>b-primary-menu-current-clause<% } %>">
+				<% if (environment == "production") { %>
+				<a href="./<%= (navigation.primary[i].link !== undefined ? navigation.primary[i].link : navigation.primary[i].template) %>.html" class="b-primary-menu-clause-link"><%= navigation.primary[i].title %></a>
+				<% } else { %>
 				<a href="/<%= (navigation.primary[i].link !== undefined ? navigation.primary[i].link : navigation.primary[i].template) %>" class="b-primary-menu-clause-link"><%= navigation.primary[i].title %></a>
+				<% } %>
 			</li>
 			<% } %>
 		</ul>
