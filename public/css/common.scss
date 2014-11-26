@@ -197,8 +197,8 @@ button::-moz-focus-inner {
 			color: #fff;
 			text: {
 				transform: uppercase;
-			 	decoration: none;
-			 	align: center;
+				decoration: none;
+				align: center;
 			}
 
 			&:hover {
@@ -568,19 +568,18 @@ button::-moz-focus-inner {
 		overflow-y: auto;
 		max-height: 890px;
 		&::-webkit-scrollbar {
-		    width: 14px;
+			width: 14px;
 		}
 
 		&::-webkit-scrollbar-track {
 			background: #73a2d0;
-		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-		    		    border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+						border-radius: 10px;
 		}
 
 		&::-webkit-scrollbar-thumb {
-		    border-radius: 7px;
-		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-
+			border-radius: 7px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 		}
 
 	}
@@ -611,3 +610,126 @@ button::-moz-focus-inner {
 
 	}
 }
+
+.b-questions-article {
+
+	padding: 75px 35px;
+	color: #0c5fa5;
+	&-title {
+
+		padding: 0 15px 20px;
+		@include Rotonda-Bold(41px, 48px);
+	}
+	&-description {
+
+		float: right;
+		padding: 35px 0 16px 0;
+		width: 432px;
+		@include Noteworthy-Bold(24px, 33px);
+		color: #3b4c66;
+	}
+
+	.b-form {
+		 
+		float: left;
+		padding: 0;
+		width: 50%;
+	}
+	.b-form-fieldset.b-form-name-fieldset {
+		
+		padding: 0 15px 20px;
+		float: left;
+		width: 432px;
+	}
+	.b-form-fieldset.b-form-text-fieldset {
+
+		float: left;
+		margin: 0;
+		width: 432px;
+	}
+	.b-form-fieldset.b-form-submit-fieldset {
+
+		float: left;
+		width: 185px;
+	}
+	.b-form-submit-field {
+
+		padding: 0;
+		line-height: 54px;
+		width: 184px;
+	}
+	&-inside {
+
+		padding: 0 0 60px 0;
+		position: relative;
+
+		&:before {
+			position: absolute;
+			content: "";
+			bottom: 35px;
+			left: -35px;
+			right: -35px;
+			height: 1px;
+			background-color: #7aa7cd;
+	  		box-shadow: 0 0 3px #d2e4f2;
+		}
+	}
+}
+.b-questions-collection-article {
+
+	position: relative;
+	padding: 0 10px 0 0;
+	max-height: 500px;
+	overflow-y: auto;
+	&::-webkit-scrollbar {
+
+		width: 14px;
+	}
+	&::-webkit-scrollbar-track {
+
+		background: #73a2d0;
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+					border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+
+		border-radius: 7px;
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+	}
+	&-clause {
+
+		padding: 0  0 35px 0;
+
+		&-name {
+
+			position: relative;
+			padding: 0 0 0 55px;
+			@include Noteworthy-Bold(28px, normal);
+			color: #0c5fa5;
+			&:before {
+				position: absolute;
+				content: "";
+				top: 4px;
+				left: 0px;
+				width: 42px;
+				height: 42px;
+				@include graphics(-175px, 0);
+			}
+		}
+		&-asking-name:before {
+			@include graphics(-216px, 0);
+		}
+		&-answered-name:before {
+			@include graphics(-175px, 0);	
+		}
+		&-paragraph {
+			
+			padding: 0 0 20px 0;
+			@include Noteworthy-Bold(19px, 25px);
+			color: #2c4d6a;
+		}
+	}
+}
+
+
