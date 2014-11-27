@@ -828,7 +828,7 @@ button::-moz-focus-inner {
 
 			@include Noteworthy-Bold(60px, normal);
 	}
-	&-days-caption {
+	&-days-description {
 
 			padding: 0 0 30px 0;
 			@include Noteworthy(25px, normal);
@@ -858,7 +858,7 @@ button::-moz-focus-inner {
 		&-clause {
 			
 			padding: 0 0 16px 0;
-			&-time {
+			&-timing-description {
 
 				display: inline-block;
 				box-sizing: border-box;
@@ -866,7 +866,7 @@ button::-moz-focus-inner {
 				@include Font(17px, normal);
 				vertical-align: middle;
 			}
-			&-name {
+			&-title {
 
 				display: inline-block;
 				box-sizing: border-box;
