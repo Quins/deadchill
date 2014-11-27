@@ -9,16 +9,12 @@ body, input, textarea, select, button {
 	font-family: Arial, sans-serif;
 }
 
-html {
-
-	height: auto;
-	height: 100%;
-}
+html {}
 
 body {
 
 	@include BaseFont(14px, 20px);
-	height: 100%;
+	height: auto;
 	position: relative;
 	text-rendering: optimizelegibility;
 	-webkit-font-smoothing: antialiased;
@@ -26,6 +22,21 @@ body {
 	background-position: 50% 0;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-moz-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+
+	min-height: 100%;
 }
 
 input, textarea, select, button {
@@ -96,10 +107,13 @@ button::-moz-focus-inner {
 .l-content {
 
 	box-sizing: border-box;
-	min-height: 100%;
+	height: auto;
 	min-width: $min-page-width;
-	padding: 236px 0 294px;
-	margin: -236px 0 -294px;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
 
 	&-inside {
 
@@ -712,7 +726,7 @@ button::-moz-focus-inner {
 				right: -35px;
 				height: 1px;
 				background-color: #7aa7cd;
-		  		box-shadow: 0 0 3px #d2e4f2;
+				box-shadow: 0 0 3px #d2e4f2;
 			}
 		}
 	}
