@@ -1,6 +1,11 @@
 $(document).ready(function() {
 
-	
+	$("[data-calendar]").datepick({ 
+		commandsAsDateFormat: true, 
+    	prevText: '<', 
+    	todayText: 'MM', 
+    	nextText: '>'
+	});
 });
 
 

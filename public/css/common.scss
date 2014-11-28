@@ -878,5 +878,12 @@ button::-moz-focus-inner {
 			}
 		}
 	}
+
+	&-calendar-section {
+
+		width: 300px;
+		margin: 35px 0 0 68px;
+		float: left;
+	}
 }
 
