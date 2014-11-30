@@ -147,6 +147,7 @@ button::-moz-focus-inner {
 	background-repeat: no-repeat;
 	position: relative;
 	min-width: $min-page-width;
+	overflow: hidden;
 
 	&-inside {
 
