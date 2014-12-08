@@ -1090,7 +1090,20 @@ button::-moz-focus-inner {
 				line-height: 600px;
 				text-align: center;
 			}
+			.b-prophecy-article-figures-result-section & {
+
+				box-sizing: border-box;
+				margin: 0 0 10px;
+				padding: 20px 70px 20px 35px;
+			}
 		}
+		&-title {
+
+			padding: 0 0 20px 0;
+			@include Noteworthy-Bold(18px, normal);
+			color: #0c5fa5;
+		}
+
 		&-paragraph {
 
 			display: inline-block;
@@ -1099,6 +1112,112 @@ button::-moz-focus-inner {
 			color: #3b4c66;
 			text-align: center;
 			vertical-align: middle;
+			.b-prophecy-article-figures-result-section & {
+
+				width: 100%;
+				text-align: left;
+			}
+		}
+	}
+	&-social-collection {
+
+		margin: 0 0 27px 12px;
+		width: 100%;
+		text-align: right;
+
+		&-title {
+
+			float: left;
+			padding: 12px 0 0;
+			display: inline-block;
+			width: 100px;
+			@include Noteworthy(16px, normal);
+			vertical-align: top;
+			text-align: left;
+			color: #0862a6
+		}
+		&-clause {
+
+			
+			position: relative;
+			display: inline-block;
+			margin: 0 10px 0 0; 
+			width: 70px;
+			height: 70px;
+			overflow: hidden;
+		}
+		&-link {
+
+			display: inline-block;
+			&:after {
+				
+				position: absolute;
+				content: "";
+				top: 3px;
+				left: 0;
+				width: 68px;
+				height: 67px;
+				z-index: 8;
+			}
+			&:before {
+
+				position: absolute;
+				content: "";
+				top: 0;
+				z-index: 10;
+				transition: all .3s ease;
+			}
+			&:hover:before {
+				
+				top: 80px;
+			}
+		}
+		&-fb-link {
+			&:before {
+
+				left: 11px;
+				width: 48px;
+				height: 12px;
+				@include graphics(-600px, -87px);
+			}
+			&:after {
+				@include graphics(-589px, -101px);
+			}
+		}
+		&-vk-link {
+			&:before {
+
+				right: 10px;
+				width: 28px;
+				height: 14px;
+				@include graphics(-700px, -87px);
+			}
+			&:after {
+				@include graphics(-667px, -101px);
+			}
+		}
+		&-od-link {
+			&:before {
+
+				right: 0;
+				width: 41px;
+				height: 19px;
+				@include graphics(-775px, -82px);
+			}
+			&:after {
+				@include graphics(-745px, -101px);
+			}
+		}
+		&-share-link {
+
+			display: inline-block;
+			float: right;
+			padding: 8px 38px 12px;
+			@include Noteworthy-Bold(18px, normal);
+			text: {
+				decoration: none;
+				transform: none;
+			}
 		}
 	}
 }
