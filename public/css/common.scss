@@ -933,9 +933,23 @@ button::-moz-focus-inner {
 			margin-right: -57px;
 			@include graphics(-523px, -66px);
 		}
-		
-	}
+		&-shake-link {
 
+			position: absolute;
+			bottom: 87px;
+			left: 50%;
+			margin-left: -63px;
+			padding: 6px 30px;
+			@include Noteworthy(18px, normal);
+			text-decoration: none;
+			text-transform: none;
+
+			&:hover {
+
+				background-color: #78afdb;
+			}
+		}
+	}
 	&-figures {
 
 		&-section {
@@ -944,7 +958,8 @@ button::-moz-focus-inner {
 			vertical-align: top;
 		}
 
-		&-description {
+		&-description,
+		 {
 			
 			padding: 0 0 15px 0;
 			@include Noteworthy-Bold(30px, normal);
@@ -1006,7 +1021,6 @@ button::-moz-focus-inner {
 			text-align: center;
 			border-radius: 5px;
 			@include shadow(0px, 5px, 13px, rgba(0, 0, 1, 0.5));
-
 		}
 		&-clause:hover {
 
@@ -1041,11 +1055,50 @@ button::-moz-focus-inner {
 			decoration: none;
 			transform: none;
 		}
-
-
 		&:hover {
 
 			background-color: #78afdb;
+		}
+	}
+
+	&-content {
+
+		&-section {
+
+			position: relative;
+			width: 370px;
+			height: 240px;
+			background-color: #bedaf3;
+			border-radius: 9px;
+			&:before {
+
+				position: absolute;
+				content: "";
+				top: -7px;
+				left: 45px;
+				height: 15px;
+				width: 155px;
+				background: transparent url(../i/graphics.png) no-repeat -413px -47px;
+			}
+			&-inside {
+
+				position: absolute;
+				top: 50%;
+				margin-top: -300px;
+				width: 100%;
+				font-size: 0;
+				line-height: 600px;
+				text-align: center;
+			}
+		}
+		&-paragraph {
+
+			display: inline-block;
+			width: 250px;
+			@include Noteworthy(18px, normal);
+			color: #3b4c66;
+			text-align: center;
+			vertical-align: middle;
 		}
 	}
 }
