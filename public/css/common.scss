@@ -911,27 +911,40 @@ button::-moz-focus-inner {
 		}
 		&-link {
 
+			text-indent: -9999px;
+			position: absolute;
+			display: block;
+			bottom: 75px;
+			width: 54px;
+			height: 54px;
+
 			&:after {
 				
-				position: absolute;
 				content: "";
-				bottom: 75px;	
+				display: block;
 				width: 54px;
 				height: 54px;
-				@include graphics(-465px, -66px);
 			}
 		}
-		&-left-link:after {
+		&-left-link {
 
 			left: 50%;
 			margin-left: -55px;
-			@include graphics(-465px, -66px);
+
+			&:after {
+
+				@include graphics(-465px, -66px);
+			}
 		}
-		&-right-link:after {
+		&-right-link {
 
 			right: 50%;
 			margin-right: -57px;
-			@include graphics(-523px, -66px);
+
+			&:after {
+
+				@include graphics(-523px, -66px);
+			}
 		}
 		&-shake-link {
 

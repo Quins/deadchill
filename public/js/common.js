@@ -10,7 +10,9 @@ $(document).ready(function() {
 	$("[data-snowglobe]").snowglobe({
 
 		imagesRoot: "/i/snowglobe/", 
-		character: "/i/figures/frog.png"
+		character: "/i/figures/gingerbreadMan.png", 
+		snowflakes: 100, 
+		selectedCharacterClass: "b-prophecy-article-figures-collection-current-clause"
 	});
 });
 
@@ -34,7 +36,17 @@ $(document).ready(function() {
 				properties: $.extend({
 					imagesRoot: "./i/", 
 					character: false, 
-					snowflakes: 10
+					snowflakes: 10, 
+					loadProphecy: function(callback) {
+
+						$("[data-snowglobe-prophecy-placeholder]").fadeOut(400, function() {
+
+							$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="shakescreen"]').addClass("b-prophecy-article-figures-result-section");
+							$("[data-snowglobe-prophecy-title]").hide().removeClass("g-hidden").fadeIn();
+							$("[data-snowglobe-prophecy]").text("Невероятные путешествия, наполненные множеством сладких моментов, борьбой с дикими условиями и романтикой.").hide().removeClass("g-hidden").fadeIn();
+							if(callback) callback();
+						});
+					}
 				}, options), 
 				pictures: {}, 
 				layers: new Layers(), 
@@ -67,8 +79,78 @@ $(document).ready(function() {
 				globe.entity.on("ready", function(e) {
 
 					ready[e.contents] = true;
-					if (ready.background && ready.character && ready.snow)
+					if (ready.background && ready.character && ready.snow) {
+						globe.api.animation.static();
+						globe.entity.unbind("ready");
+					}
+				});
+
+				$("[data-snowglobe-character]").click(function(event) {
+
+					event.preventDefault();
+
+					if ($(this).data("snowglobe-character-src") === "")
+						return false;
+
+					$("[data-snowglobe-character]").removeClass("b-prophecy-article-figures-collection-current-clause");
+					$(this).addClass("b-prophecy-article-figures-collection-current-clause");
+
+					return globe.api.initCharacter($(this).data("snowglobe-character-src"));
+				});
+
+				$("[data-snowglobe-action]").click(function(event) {
+
+					event.preventDefault();
+
+					if ($(this).data("snowglobe-action-descriptor") === "")
+						return false;
+					else if ($(this).data("snowglobe-action-descriptor") === "previous-character") {
+
+						var characters = $("[data-snowglobe-character]");
+						var current = characters.index(characters.filter("." + globe.properties.selectedCharacterClass));
+						if (current > 0)
+							characters.eq(current-1).click();
+
+					} else if ($(this).data("snowglobe-action-descriptor") === "next-character") {
+
+						var characters = $("[data-snowglobe-character]");
+						var current = characters.index(characters.filter("." + globe.properties.selectedCharacterClass));
+						if (current < $("[data-snowglobe-character]").length - 1)
+							$("[data-snowglobe-character]").eq(current+1).click();
+
+					} else if ($(this).data("snowglobe-action-descriptor") === "shakescreen") {
+
+						$("[data-snowglobe-screen]").hide().removeClass("g-hidden");
+						$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="shakescreen"]').show();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='previous-character']").fadeOut();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='next-character']").fadeOut();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='shake']").hide().removeClass('g-hidden').fadeIn();
+
+					} else if ($(this).data("snowglobe-action-descriptor") === "shake") {
+
 						globe.api.animation.shake();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='shake']").fadeOut();
+						setTimeout( function() {
+
+							globe.api.animation.snow();
+							globe.properties.loadProphecy(function() {
+
+								$("[data-snowglobe-share]").hide().removeClass("g-hidden").fadeIn();
+								$('[data-snowglobe-action][data-snowglobe-action-descriptor="character"]').hide().removeClass("g-hidden").fadeIn();
+							});
+						}, 1500);
+					} else if ($(this).data("snowglobe-action-descriptor") === "character") {
+
+						globe.api.animation.static();
+						$("[data-snowglobe-screen]").hide().removeClass("g-hidden");
+
+						$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="character"]').show();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='shake']").fadeOut();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='previous-character']").fadeIn();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='next-character']").fadeIn();
+					}
+
+					return true;
 				});
 
 				return true;
@@ -183,10 +265,22 @@ $(document).ready(function() {
 				snow: function() {
 
 					globe.api.animation.stop();
+					globe.api.initSnow();
 					globe.api.animation.interval = setInterval(function() {
 
 						globe.api.draw();
 					}, 25);
+				}, 
+				static: function() {
+
+					globe.api.hideSnow(800);
+					setTimeout( function() {
+						clearInterval(globe.api.animation.interval);
+						globe.api.animation.interval = setInterval(function() {
+
+							globe.api.draw();
+						}, 25);
+					}, 800);
 				}, 
 				shake: function() {
 
@@ -201,11 +295,12 @@ $(document).ready(function() {
 
 					function Shake() {
 
-						this._duration = 800;
-						this._start = 0;
+						this._duration = 100;
+						this._peak = 20;
+						this._safe = 0.4;
+						this._current = 0;
 						this._started = new Date().getTime();
-						this._destination = Math.floor(Math.random() * 10 + 5);
-						this._distance = this._destination;
+						this._destination = Math.floor(Math.random() * this._peak * 2 - this._peak);
 					}
 
 					Shake.prototype.valueOf = function() {
@@ -214,26 +309,34 @@ $(document).ready(function() {
 
 						if (t > 1) {
 
-							this._start = this._destination;
-							this._destination = (this._start > 0 ? - Math.floor(Math.random() * 10 + 5) : Math.floor(Math.random() * 10 + 5));
+							this._destination = (this._destination > 0 ? - Math.floor(Math.random() * this._peak * (1-this._safe) + this._peak * this._safe) : Math.floor(Math.random() * this._peak * (1-this._safe) + this._peak * this._safe));
 							this._started = new Date().getTime();
-							this._distance = Math.abs(this._start - this._destination);
-						}
 
-						t /= this._duration/2;
-						if (t < 1) return this._distance/2 * Math.pow( 2, 10 * (t - 1) ) + this._start;
-						else return this._distance/2 * ( -Math.pow( 2, -10 * (t - 1)) + 2 ) + this._start;
+							return 0;
+						} else {
+
+							var n = ((this._destination - this._current) * t * t) / (t * t + (1-t) * (1-t));
+							this._current = this._current + n;
+
+							return n;
+						}
 					};
 				}, 
 				stop: function() {
 
 					clearInterval(globe.api.animation.interval);
 					globe.ctx.setTransform(1, 0, 0, 1, 0, 0);
+					globe.api.draw();
 				}
 			}
 			globe.entity.on("snow", globe.api.animation.snow);
 			globe.entity.on("shake", globe.api.animation.shake);
-			globe.entity.on("fade", globe.api.animation.fade);
+			globe.entity.on("stop", globe.api.animation.fade);
+
+			globe.entity.on("layers", function() {
+
+				globe.layers.names();
+			});
 
 			globe.api.service = function() {
 
@@ -256,28 +359,60 @@ $(document).ready(function() {
 
 				for (var i = 0; i < globe.properties.snowflakes; i++) {
 					globe.snow[i] = new Snowflake();
-					globe.snow[i].draw();
+				};
+
+				function action() {
+					for (var i = 0; i < globe.properties.snowflakes; i++) {
+						globe.snow[i].draw();
+					};
+				}
+
+				if (!globe.layers.change("snowflakes", action)) {
+
+					globe.layers.push({ 
+
+						action: action,
+						priority: 35, 
+						descriptor: "snowflakes"
+					});
+				}
+			}
+
+
+			globe.api.hideSnow = function(time) {
+
+				for (var i = 0; i < globe.properties.snowflakes; i++) {
+
+					if (globe.snow && globe.snow[i])
+						globe.snow[i].fade(time);
 				};
 			}
-			globe.entity.on("draw_snow", globe.api.initSnow);
 
 
 			function Snowflake() {
 
-				var center = randominside(), 
-					size = random(1,5), 
-					opacity = 0.7 * walldistance(center) / globe.ball.r + 0.1, 
-					color = "#fff", 
+				var center, 
+					t, 
+					duration, 
+					size, 
+					opacity, 
+					color, 
 					xv, 
 					yv, 
-					zv;
+					zv, 
+					fade, 
+					curve = {}, 
+					forcefade = false, 
+					fadelength = 2000;
+
+				flake();
 
 				this.draw = function() {
 
 					globe.ctx.save();
 					globe.ctx.beginPath();
 					globe.ctx.fillStyle = color;
-					globe.ctx.globalAlpha = opacity;
+					globe.ctx.globalAlpha = opacity * fade;
 					globe.ctx.shadowColor = "#fff";
 					globe.ctx.shadowBlur = 5;
 					globe.ctx.arc(center.x, center.y, size, 0, 2*Math.PI);
@@ -285,7 +420,65 @@ $(document).ready(function() {
 					globe.ctx.closePath();
 					globe.ctx.restore();
 
+					reposition();
+
 					return true;
+				}
+
+				this.fade = function(time) {
+
+					fadelength = time;
+					forcefade = new Date().getTime();
+				}
+
+				function flake() {
+
+					center = randominside(); 
+					t = new Date().getTime();  
+					duration = random(1200, 4000); 
+					size = random(1,5); 
+					opacity = 0.7 * walldistance(center) / globe.ball.r + 0.1; 
+					color = "#fff"; 
+					fade = 0;
+
+					curve.step = Math.random() * 0.006 + 0.003;
+					curve.origin = {
+						x: center.x, 
+						y: center.y 
+					};
+					curve.amplitude = (Math.random() * 0.8 + 0.2) * walldistance(curve.origin);
+				}
+
+				function reposition() {
+
+					if (center.y >= globe.ball.ythreshold) {
+
+						flake();
+					} else {
+
+						var dt = (new Date().getTime() - t);
+						if (!fadeaction(dt)) return false;
+						center.y = curve.origin.y + curve.step * dt;
+						center.x = curve.origin.x + curve.amplitude * Math.sin(center.y);
+						curve.amplitude = Math.min(walldistance(center), curve.amplitude);
+					}
+				}
+
+				function fadeaction(dt) {
+
+					if (forcefade) {
+
+						var dt = (new Date().getTime() - forcefade);
+						if (fade > 0) fade = 1 - dt / fadelength;
+						if (fade < 0) fade = 0;
+
+						return (fade === 0 ? false : true);
+					} else {
+
+						if (fade < 1) fade = dt / fadelength;
+						else if (fade > 1) fade = 1;
+						return true;
+					}
 				}
 
 				function walldistance(center) {
@@ -297,7 +490,11 @@ $(document).ready(function() {
 
 					var result = {}, 
 						r = 0, 
-						angle = Math.random() * 2 * Math.PI + Math.PI * 0.5;
+						angle = Math.random() * 2 * Math.PI + Math.PI * 0.5, 
+						top = globe.ball.y - globe.ball.r, 
+						y = top + Math.random() * (globe.ball.ythreshold - top), 
+						range = Math.sqrt(Math.pow(globe.ball.r, 2) - Math.pow(globe.ball.y - y, 2));
+						x = globe.ball.x + range * (Math.random() < 0.5 ? -1 : 1) * Math.sqrt(Math.random());
 
 					if (angle < globe.ball.angle.start || globe.ball.angle.end < angle)
 						r = Math.random() * (globe.ball.ythreshold - globe.ball.y) * Math.sin(angle);
@@ -306,6 +503,9 @@ $(document).ready(function() {
 
 					result.x = globe.ball.x + r * Math.cos(angle);
 					result.y = globe.ball.y + r * Math.sin(angle);
+
+					result.x = x;
+					result.y = y;
 
 					return result;
 				}
@@ -353,6 +553,20 @@ $(document).ready(function() {
 					else 
 						_layers[pos] = action;
 					return true;
+				}
+
+				this.remove = function( descriptor ) {
+
+					var pos = _descriptors.indexOf(descriptor);
+
+					if (pos < 0)
+						return false;
+					else {
+						_layers.splice(pos, 1);
+						_priorities.splice(pos, 1);
+						_descriptors.splice(pos, 1);
+						return true;
+					}
 				}
 
 				this.names = function() {
