@@ -918,7 +918,39 @@ button::-moz-focus-inner {
 
 .b-prophecy-article {
 	
-	padding: 50px 90px 32px 31px;
+	padding: 50px 20px 30px 30px;
+	height: 472px;
+
+	&-intro {
+		
+		&-section {
+			
+			margin: 50px 0 0;	
+			padding: 35px 50px;
+			width: 361px;
+			height: 298px;
+			background: url(../i/letter.png) no-repeat 0 0;
+		}
+		&-title {
+			
+			padding: 0	0 15px 0;
+			@include Noteworthy-Bold(30px, 40px);
+			color: #0862a6;
+			text-transform: uppercase;
+		}
+		&-paragraph {
+
+			margin: 0 0 10px 0;
+			padding: 0 60px 0 0;
+			@include Noteworthy-Bold(20px, 26px);
+			color: #0c5fa5;
+		}
+	}
+
+
+
+
+
 
 	&-pictures {
 		
@@ -1276,7 +1308,14 @@ button::-moz-focus-inner {
 	background: #2c7ebd; 
 	border: none; border-radius: 10px; 
 	box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.75); 
+
+	.b-prophecy-article-intro-section & {
+
+		margin: 20px 0 0;
+		padding: 0 36px;
+		@include Font(15px, 54px);
 	}
+}
 
 .bx_pagination_bottom {
 
