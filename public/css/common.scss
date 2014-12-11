@@ -117,7 +117,7 @@ button::-moz-focus-inner {
 	-webkit-box-flex: 1;
 	-moz-box-flex: 1;
 	-webkit-flex: 1;
-	-ms-flex: 1;
+	-ms-flex: 1 0 auto;
 	flex: 1;
 
 	&-inside {
@@ -737,13 +737,13 @@ button::-moz-focus-inner {
 
 			float: left;
 			margin: 10px 0 0 -2px;
-			width: 185px;
+			width: 220px;
 		}
 		&-submit-field {
 
 			padding: 0;
 			line-height: 54px;
-			width: 184px;
+			width: 200px;
 		}
 		&-inside {
 
@@ -767,8 +767,7 @@ button::-moz-focus-inner {
 
 	position: relative;
 	padding: 0 10px 0 0;
-	max-height: 500px;
-	overflow-y: auto;
+
 	&::-webkit-scrollbar {
 
 		width: 14px;
