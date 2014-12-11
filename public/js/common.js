@@ -10,6 +10,7 @@ $(document).ready(function() {
 	$("[data-snowglobe]").snowglobe({
 
 		imagesRoot: "/i/snowglobe/", 
+		preparation: "/i/snowglobe/snowglobe-question.png", 
 		character: "/i/figures/gingerbreadMan.png", 
 		snowflakes: 100, 
 		selectedCharacterClass: "b-prophecy-article-figures-collection-current-clause"
@@ -148,6 +149,17 @@ $(document).ready(function() {
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='shake']").fadeOut();
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='previous-character']").fadeIn();
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='next-character']").fadeIn();
+					} else if ($(this).data("snowglobe-action-descriptor") === "start") {
+
+						$("[data-snowglobe-screen]").hide().removeClass("g-hidden");
+
+						$('[data-snowglobe-main]').removeClass("g-hidden");
+						$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="character"]').show();
+					} else if ($(this).data("snowglobe-action-descriptor") === "tab") {
+
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='tab']").removeClass("b-prophecy-article-pagination-collection-current-clause");
+						$(this).addClass("b-prophecy-article-pagination-collection-current-clause");
+						$("[data-snowglobe-tab]").addClass("g-hidden").eq(parseInt($(this).data("snowglobe-action-contents")-1)).removeClass("g-hidden");
 					}
 
 					return true;
@@ -262,6 +274,22 @@ $(document).ready(function() {
 			globe.api.animation = {
 
 				interval: false,
+				prepare: function() {
+
+					globe.api.animation.stop();
+					globe.layers.push({ 
+
+						action: function() {
+
+							globe.ctx.save();
+							globe.ctx.drawImage(globe.pictures.snowglobe, 0, 1);
+							globe.ctx.restore();
+						}, 
+						priority: 0, 
+						descriptor: "prepare"
+					});
+					globe.api.hideSnow(0);
+				}, 
 				snow: function() {
 
 					globe.api.animation.stop();
