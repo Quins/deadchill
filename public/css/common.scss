@@ -918,7 +918,7 @@ button::-moz-focus-inner {
 
 .b-prophecy-article {
 	
-	padding: 50px 97px 32px 31px;
+	padding: 50px 90px 32px 31px;
 
 	&-pictures {
 		
@@ -926,7 +926,7 @@ button::-moz-focus-inner {
 
 			display: inline-block;
 			position: relative;
-			margin: 0 10px 0 0;
+			margin: 0;
 			vertical-align: top;
 		}
 		&-figure-picture {
@@ -1008,7 +1008,7 @@ button::-moz-focus-inner {
 		}
 		&-collection {
 				
-			maring: 0 0 -3px;
+			margin: 0;
 			width: 381px;
 			@include Font(0, 0);
 			
