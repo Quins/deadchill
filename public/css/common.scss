@@ -22,6 +22,7 @@ body {
 	background-position: 50% 0;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	background-size: cover;
 
 	display: -webkit-box;
 	display: -moz-box;
@@ -42,6 +43,10 @@ body {
 input, textarea, select, button {
 	
 	font-size: 1em;
+}
+
+textarea {
+	overflow: auto;
 }
 
 /* Overrides extra padding in Firefox */ 
@@ -196,6 +201,7 @@ button::-moz-focus-inner {
 	width: 100%;
 	text-align: left;
 	vertical-align: top;
+	box-sizing: border-box;
 
 	&-clause {
 
@@ -215,12 +221,23 @@ button::-moz-focus-inner {
 				decoration: none;
 				align: center;
 			}
+			.b-primary-menu-current-clause & {
+
+					color: #f0283a;
+				}
 
 			&:hover {
+
 				text-decoration: underline;
+				
+				.b-primary-menu-current-clause & {
+
+					color: #f0283a;
+				}
 			}
 		}
 	}
+
 }
 
 .b-form {
@@ -383,25 +400,9 @@ button::-moz-focus-inner {
 		@include shadow(3px, 4px, 0, #41647f, inset);
 		@include BaseFont(16px, 18px);
 	}
-
-	&-submit-field {
-
-		max-width: 100%;
-		background: #2c7ebd;
-		border: none;
-		border-radius: 10px;
-		padding: 15px 15px 10px;
-		white-space: normal;
-		color: #fff;
-		text-transform: uppercase;
-		text-shadow: 1px 1px 0 rgba(0,0,0,.75);
-		@include Noteworthy(12px, 16px);
-		@include shadow(2px, 1px, 3px, rgba(0,0,0,.75));
-
-		&:hover {
+	&-submit-field:hover {
 
 			cursor: pointer;
-		}
 	}
 }
 
@@ -415,7 +416,6 @@ button::-moz-focus-inner {
 
 		@include Rotonda-Bold(200px, 240px);
 	}
-
 	&-description {
 
 		@include Rotonda-Bold(50px, 60px);
@@ -482,25 +482,43 @@ button::-moz-focus-inner {
 					line-height: 69px;
 
 					&:after {
+
 						position: absolute;
 						content: "";
 					}
 				}
-				&-tiji-link:after {
+
+				&-tiji-link {
+
+					position: relative;
+					display: block; 
+					width: 113px; 
+					height: 63px; 
 					
-					top: 0;
-					left: 0;
-					width: 113px;
-					height: 63px;
-					@include graphics(0, 0);
+					&:after {
+
+						top: 0;
+						left: 0;
+						width: 113px;
+						height: 63px;
+						@include graphics(0, 0);
+					}	
 				}
-				&-gulli-link:after {
+				&-gulli-link {
+
+					position: relative;
+					display: block; 
+					width: 61px; 
+					height: 63px; 
+
+					&:after {
 					
-					top: 0;
-					left: 0;
-					width: 61px;
-					height: 63px;
-					@include graphics(-114px, 0);
+						top: 0;
+						left: 0;
+						width: 61px;
+						height: 63px;
+						@include graphics(-114px, 0);
+					}
 				}
 			}
 		}
@@ -569,8 +587,6 @@ button::-moz-focus-inner {
 	margin: 0 0 90px 0;
 	padding: 75px 35px;
 	box-sizing: border-box;
-	max-height: 1035px;
-	overflow: hidden;
 	
 	&-title {
 
@@ -580,23 +596,19 @@ button::-moz-focus-inner {
 	}
 	&-content {
 		padding: 0 10px 0 0;
-		overflow-y: auto;
-		max-height: 890px;
+		
 		&::-webkit-scrollbar {
 			width: 14px;
 		}
-
 		&::-webkit-scrollbar-track {
 			background: #73a2d0;
 			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 						border-radius: 10px;
 		}
-
 		&::-webkit-scrollbar-thumb {
 			border-radius: 7px;
 			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 		}
-
 	}
 	&-paragraph {
 
@@ -642,6 +654,25 @@ button::-moz-focus-inner {
 		width: 432px;
 		@include Noteworthy-Bold(24px, 33px);
 		color: #3b4c66;
+	}
+	&-inside {
+
+		position: relative;
+		padding-bottom: 30px;
+		margin-bottom: 30px;
+
+		&:before {
+
+			position: absolute;
+			content: "";
+			left: -35px;
+			right: -35px;
+			bottom: 0;
+			height: 1px;
+			background: #7aa7cd;
+			border-top: 1px solid #bfd8ea;
+			border-bottom: 1px solid #bfd8ea;
+		}
 	}
 
 	.b-form {
@@ -837,8 +868,6 @@ button::-moz-focus-inner {
 	}
 	&-programms-collection {
 
-		max-height: 710px;
-		overflow-y: auto;
 		@include Noteworthy(0, 0);
 		&::-webkit-scrollbar {
 
@@ -1178,11 +1207,6 @@ button::-moz-focus-inner {
 				content: "";
 				top: 0;
 				z-index: 10;
-				transition: all .3s ease;
-			}
-			&:hover:before {
-				
-				top: 80px;
 			}
 		}
 		&-fb-link {
@@ -1234,4 +1258,66 @@ button::-moz-focus-inner {
 		}
 	}
 }
+
+.b-button, .b-form-submit-field { 
+
+	display: inline-block;
+	padding: 0 25px; 
+	max-width: 100%;
+	height: 54px; 
+	@include Noteworthy(14px, 54px);
+	font-weight: 600;
+	color: #fff; 
+	text: {
+		transform: uppercase;
+		shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
+		decoration: none;
+	}
+	white-space: normal; 
+	background: #2c7ebd; 
+	border: none; border-radius: 10px; 
+	box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.75); 
+	}
+
+.bx_pagination_bottom {
+
+	text-align: center;
+	font-size: 0;
+	line-height: 30px;
+
+	.bx_pagination_page {
+
+		& ul {
+			font-size: 0;
+			line-height: 30px;
+
+			& > li  {
+
+				display: inline-block;
+				margin:  0 5px;
+				padding: 0 6px;
+				height: 28px;
+				width: auto;
+				@include Noteworthy(14px, 28px);
+				font-weight: 700;
+				color: #fff;
+				text-shadow:  0 1px 0 #000;
+				background:  #2c7ebd;
+				border-radius:  5px;
+				vertical-align:  top;
+			}
+		}
+		& li a {
+
+			color: #fff;
+			line-height: 24px;
+		}
+		li.bx_active {
+			
+			height: 28px;
+			background: #78afdb;
+			font-weight: 700; }
+	}
+}
+
 
