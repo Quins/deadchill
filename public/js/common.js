@@ -13,9 +13,44 @@ $(document).ready(function() {
 		preparation: "/i/snowglobe/snowglobe-question.png", 
 		character: "/i/figures/gingerbreadMan.png", 
 		snowflakes: 100, 
-		selectedCharacterClass: "b-prophecy-article-figures-collection-current-clause"
+		selectedCharacterClass: "b-prophecy-article-figures-collection-current-clause", 
+		loadProphecy: function(callback) {
+
+			$("[data-snowglobe-prophecy-placeholder]").fadeOut(400, function() {
+
+				$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="shakescreen"]').addClass("b-prophecy-article-figures-result-section");
+				$("[data-snowglobe-prophecy-title]").hide().removeClass("g-hidden").fadeIn();
+				$("[data-snowglobe-prophecy]").text("Невероятные путешествия, наполненные множеством сладких моментов, борьбой с дикими условиями и романтикой.").hide().removeClass("g-hidden").fadeIn();
+				if(callback) callback();
+			});
+		}
+	});
+
+	$(".b-prophecy-article-social-collection-fb-link").click(function(e) {
+
+		e.preventDefault();
+
+		$(".b-prophecy-article").storeGlobe();
 	});
 });
+
+
+/* Captures current snowglobe canvas state and 
+   rewrites jQuery selector contents with captured image
+*/
+
+(function( $ ) {
+	$.fn.storeGlobe = function() {
+
+		var img = document.createElement("img");
+		img.src = $("[data-snowglobe]").get(0).toDataURL("image/png");
+
+		return this.each( function() {
+
+			$(this).html(img);
+		});
+	}
+})(jQuery);
 
 
 /* Snowglobe */
@@ -79,11 +114,17 @@ $(document).ready(function() {
 
 				globe.entity.on("ready", function(e) {
 
+					if (e.contents === "preparation") {
+
+						globe.api.animation.prepare();
+						return true;
+					}
+/*
 					ready[e.contents] = true;
 					if (ready.background && ready.character && ready.snow) {
 						globe.api.animation.static();
 						globe.entity.unbind("ready");
-					}
+					}*/
 				});
 
 				$("[data-snowglobe-character]").click(function(event) {
@@ -109,15 +150,22 @@ $(document).ready(function() {
 
 						var characters = $("[data-snowglobe-character]");
 						var current = characters.index(characters.filter("." + globe.properties.selectedCharacterClass));
-						if (current > 0)
+						if (current > 0) {
 							characters.eq(current-1).click();
+							var prevTabID = 1 + $("[data-snowglobe-tab]").index($("[data-snowglobe-tab]").has(characters.get(current-1)));
+							$("[data-snowglobe-action][data-snowglobe-action-descriptor='tab'][data-snowglobe-action-contents='" + prevTabID + "']").click();
+						}
 
 					} else if ($(this).data("snowglobe-action-descriptor") === "next-character") {
 
 						var characters = $("[data-snowglobe-character]");
 						var current = characters.index(characters.filter("." + globe.properties.selectedCharacterClass));
-						if (current < $("[data-snowglobe-character]").length - 1)
+
+						if (current < $("[data-snowglobe-character]").length - 1) {
 							$("[data-snowglobe-character]").eq(current+1).click();
+							var nextTabID = 1 + $("[data-snowglobe-tab]").index($("[data-snowglobe-tab]").has(characters.get(current+1)));
+							$("[data-snowglobe-action][data-snowglobe-action-descriptor='tab'][data-snowglobe-action-contents='" + nextTabID + "']").click();
+						}
 
 					} else if ($(this).data("snowglobe-action-descriptor") === "shakescreen") {
 
@@ -145,6 +193,13 @@ $(document).ready(function() {
 						globe.api.animation.static();
 						$("[data-snowglobe-screen]").hide().removeClass("g-hidden");
 
+						$("[data-snowglobe-prophecy]").hide();
+						$("[data-snowglobe-prophecy-title]").hide();
+						$("[data-snowglobe-share]").hide();
+						$('[data-snowglobe-action][data-snowglobe-action-descriptor="character"]').hide();
+						$("[data-snowglobe-prophecy-placeholder]").show();
+						$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="shakescreen"]').removeClass("b-prophecy-article-figures-result-section");
+
 						$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="character"]').show();
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='shake']").fadeOut();
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='previous-character']").fadeIn();
@@ -153,7 +208,10 @@ $(document).ready(function() {
 
 						$("[data-snowglobe-screen]").hide().removeClass("g-hidden");
 
+						globe.api.animation.static();
 						$('[data-snowglobe-main]').removeClass("g-hidden");
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='previous-character']").hide().removeClass("g-hidden").fadeIn();
+						$("[data-snowglobe-action][data-snowglobe-action-descriptor='next-character']").hide().removeClass("g-hidden").fadeIn();
 						$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="character"]').show();
 					} else if ($(this).data("snowglobe-action-descriptor") === "tab") {
 
@@ -168,7 +226,7 @@ $(document).ready(function() {
 				return true;
 			})();
 
-			(globe.api.init = function () {
+			globe.api.init = function () {
 
 				globe.layers = new Layers();
 
@@ -211,15 +269,42 @@ $(document).ready(function() {
 				globe.pictures.frontsnow.src = globe.properties.imagesRoot + "frontsnow.png";
 
 				return true;
-			})();
+			}
 
 
-			(globe.api.initCharacter = function(path) {
+			globe.api.prepare = function () {
+
+				globe.layers = new Layers();
+
+				globe.pictures.preparation = new Image();
+				globe.pictures.preparation.onload = function() {
+
+					globe.layers.push({ 
+
+						action: function() {
+
+							globe.ctx.save();
+							globe.ctx.drawImage(globe.pictures.preparation, 0, 1);
+							globe.ctx.restore();
+						}, 
+						priority: -1, 
+						descriptor: "preparation"
+					});
+
+					globe.entity.trigger($.Event("ready", {contents: "preparation"}));
+				}
+				globe.pictures.preparation.src = globe.properties.preparation;
+
+				return true;
+			}
+			globe.api.prepare();
+
+
+			globe.api.initCharacter = function(path) {
 
 				if (!path) {
 
-					globe.entity.trigger($.Event("ready", {contents: "character"}));
-					return false;
+					var path = globe.properties.character;
 				}
 
 				globe.pictures.character = new Image();
@@ -247,7 +332,7 @@ $(document).ready(function() {
 				globe.pictures.character.src = path;
 
 				return true;
-			})(globe.properties.character);
+			}
 			globe.entity.on("add", function(event) { if (event.contents.entity === "character") globe.api.initCharacter(event.contents.url); });
 
 
@@ -277,18 +362,10 @@ $(document).ready(function() {
 				prepare: function() {
 
 					globe.api.animation.stop();
-					globe.layers.push({ 
+					globe.api.animation.interval = setInterval(function() {
 
-						action: function() {
-
-							globe.ctx.save();
-							globe.ctx.drawImage(globe.pictures.snowglobe, 0, 1);
-							globe.ctx.restore();
-						}, 
-						priority: 0, 
-						descriptor: "prepare"
-					});
-					globe.api.hideSnow(0);
+						globe.api.draw();
+					}, 25);
 				}, 
 				snow: function() {
 
@@ -304,6 +381,11 @@ $(document).ready(function() {
 					globe.api.hideSnow(800);
 					setTimeout( function() {
 						clearInterval(globe.api.animation.interval);
+						if (!globe.pictures.snowglobe || !globe.pictures.frontsnow) {
+							globe.api.init();
+							if (!globe.pictures.character)
+								globe.api.initCharacter();
+						}
 						globe.api.animation.interval = setInterval(function() {
 
 							globe.api.draw();
@@ -474,7 +556,7 @@ $(document).ready(function() {
 						x: center.x, 
 						y: center.y 
 					};
-					curve.amplitude = (Math.random() * 0.8 + 0.2) * walldistance(curve.origin);
+					curve.amplitude = 0.5 * (Math.random() * 0.8 + 0.2) * walldistance(curve.origin);
 				}
 
 				function reposition() {
