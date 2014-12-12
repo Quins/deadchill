@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 		imagesRoot: "/i/snowglobe/", 
 		preparation: "/i/snowglobe/snowglobe-question.png", 
-		character: "/i/figures/gingerbreadMan.png", 
+		character: "/i/figures/question.png", 
 		snowflakes: 100, 
 		selectedCharacterClass: "b-prophecy-article-figures-collection-current-clause", 
 		loadProphecy: function(callback) {
@@ -114,17 +114,11 @@ $(document).ready(function() {
 
 				globe.entity.on("ready", function(e) {
 
-					if (e.contents === "preparation") {
-
-						globe.api.animation.prepare();
-						return true;
-					}
-/*
 					ready[e.contents] = true;
 					if (ready.background && ready.character && ready.snow) {
 						globe.api.animation.static();
 						globe.entity.unbind("ready");
-					}*/
+					}
 				});
 
 				$("[data-snowglobe-character]").click(function(event) {
@@ -208,11 +202,12 @@ $(document).ready(function() {
 
 						$("[data-snowglobe-screen]").hide().removeClass("g-hidden");
 
-						globe.api.animation.static();
 						$('[data-snowglobe-main]').removeClass("g-hidden");
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='previous-character']").hide().removeClass("g-hidden").fadeIn();
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='next-character']").hide().removeClass("g-hidden").fadeIn();
 						$('[data-snowglobe-screen][data-snowglobe-screen-descriptor="character"]').show();
+
+						globe.api.initCharacter($("[data-snowglobe-character].b-prophecy-article-figures-collection-current-clause").data("snowglobe-character-src"));
 					} else if ($(this).data("snowglobe-action-descriptor") === "tab") {
 
 						$("[data-snowglobe-action][data-snowglobe-action-descriptor='tab']").removeClass("b-prophecy-article-pagination-collection-current-clause");
@@ -226,7 +221,7 @@ $(document).ready(function() {
 				return true;
 			})();
 
-			globe.api.init = function () {
+			(globe.api.init = function () {
 
 				globe.layers = new Layers();
 
@@ -269,38 +264,10 @@ $(document).ready(function() {
 				globe.pictures.frontsnow.src = globe.properties.imagesRoot + "frontsnow.png";
 
 				return true;
-			}
+			})();
 
 
-			globe.api.prepare = function () {
-
-				globe.layers = new Layers();
-
-				globe.pictures.preparation = new Image();
-				globe.pictures.preparation.onload = function() {
-
-					globe.layers.push({ 
-
-						action: function() {
-
-							globe.ctx.save();
-							globe.ctx.drawImage(globe.pictures.preparation, 0, 1);
-							globe.ctx.restore();
-						}, 
-						priority: -1, 
-						descriptor: "preparation"
-					});
-
-					globe.entity.trigger($.Event("ready", {contents: "preparation"}));
-				}
-				globe.pictures.preparation.src = globe.properties.preparation;
-
-				return true;
-			}
-			globe.api.prepare();
-
-
-			globe.api.initCharacter = function(path) {
+			(globe.api.initCharacter = function(path) {
 
 				if (!path) {
 
@@ -332,7 +299,7 @@ $(document).ready(function() {
 				globe.pictures.character.src = path;
 
 				return true;
-			}
+			})();
 			globe.entity.on("add", function(event) { if (event.contents.entity === "character") globe.api.initCharacter(event.contents.url); });
 
 
@@ -359,14 +326,6 @@ $(document).ready(function() {
 			globe.api.animation = {
 
 				interval: false,
-				prepare: function() {
-
-					globe.api.animation.stop();
-					globe.api.animation.interval = setInterval(function() {
-
-						globe.api.draw();
-					}, 25);
-				}, 
 				snow: function() {
 
 					globe.api.animation.stop();
