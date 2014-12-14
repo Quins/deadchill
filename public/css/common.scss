@@ -160,6 +160,8 @@ button::-moz-focus-inner {
 	}
 }
 
+/* Blocks (blocks styles) / prefix - b- */
+
 .b-logo {
 	
 	display: inline-block;
@@ -921,6 +923,11 @@ button::-moz-focus-inner {
 	padding: 50px 20px 30px 30px;
 	height: 472px;
 
+	&-title {
+
+		display: none;
+	}
+
 	&-intro {
 		
 		&-section {
@@ -1354,3 +1361,90 @@ button::-moz-focus-inner {
 }
 
 
+/* Pages styles / prefix - p- */
+
+.p-prophecy-iframe {
+
+	background: none;
+
+	&-link {
+
+		position: absolute;
+		display: block;
+		z-index: 1;
+		text-indent: -9999px;
+		padding: 25px 30px;
+		width: 163px;
+		height: 116px;
+
+		&:before {
+
+			content: "";
+			display: block;
+			position: absolute;
+			width: 163px;
+			height: 116px;
+			top: 50%;
+			left: 50%;
+			margin: -58px 0 0 -81px;
+			background: url(../i/logo-iframe.png) 0 0 no-repeat;
+		}
+
+		&:hover {
+
+			opacity: 0.8;
+		}
+	}
+}
+
+	.p-prophecy-iframe .b-prophecy-article {
+
+		background-image: url(../i/snowglobe/iframe-background.jpg);
+		background-position: 50% 100%;
+		background-size: cover;
+		max-width: 968px;
+		height: auto;
+		text-align: center;
+		position: relative;
+
+		&-pictures-section {
+
+			text-align: left;
+		}
+
+		&-figures-section {
+
+			text-align: left;
+			width: 461px;
+		}
+
+		&-intro-section {
+
+			min-width: 0;
+			width: 361px;
+		}
+
+		&-content-section {
+
+			width: auto;
+		}
+
+		&-figures-description {
+
+			color: #fff;
+		}
+
+		&-social-collection {
+
+			&-title {
+
+				color: #fff;
+			}
+
+			&-link {
+
+				text-align: left;
+				text-indent: -9999px;
+			}
+		}
+	}

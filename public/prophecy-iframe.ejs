@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+	<title><%= project.title %></title>
+
+	<link rel="stylesheet" type="text/css" href="./css/common.css" media="all">
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="./css/miserable-browsers/internet-explorer-8.css" media="all"><![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="./css/miserable-browsers/internet-explorer-9.css" media="all"><![endif]-->
+	<script type="text/javascript" src="./js/html5ie.js"></script>
+	<script type="text/javascript" src="./js/jquery.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./js/datepick/jquery.datepick.deadchill.css" media="all">
+	<script type="text/javascript" src="./js/datepick/jquery.plugin.min.js"></script>
+	<script type="text/javascript" src="./js/datepick/jquery.datepick.min.js"></script>
+	<script type="text/javascript" src="./js/datepick/jquery.datepick-ru.js"></script>
+
+	<script type="text/javascript" src="./js/common.js"></script>
+</head>
+<body class="p-prophecy-iframe">
+
+	<a href="http://dedmoroztv.ru" class="p-prophecy-iframe-link">Телеканал Деда Мороза</a>
+
+	<article class="b-prophecy-article">
+
+		<h1 class="b-prophecy-article-title">Предсказание</h1>
+		<!-- First screen -->
+		<div class="b-prophecy-article-pictures-section" data-snowglobe-main="true">
+			
+			<canvas class="b-prophecy-article-canvas-picture" width="440" height="460" data-snowglobe="true">
+				<div class="b-prophecy-article-pictures-main-picture" data-snowglobe-placeholder="true" data-snowglobe-placeholder-descriptor="preparation">
+					<img src="/i/snowglobe/snowglobe-question.png" height="457" width="439" alt="Снежный шар" class="b-prophecy-article-pictures-main-picture-entity">
+				</div>
+				<div class="b-prophecy-article-pictures-main-picture g-hidden" data-snowglobe-placeholder="true" data-snowglobe-placeholder-descriptor="main">
+					<img src="/i/snowball.png" alt="Снежный шар" class="b-prophecy-article-pictures-main-picture-entity">
+				</div>
+				<div class="b-prophecy-article-pictures-figure-picture g-hidden" data-snowglobe-placeholder="true" data-snowglobe-placeholder-descriptor="main">
+					<img src="/i/gingerbreadMan.png" height="223" width="268" alt="Пряничный человечек" class="b-prophecy-article-pictures-main-picture-entity">
+				</div>
+			</canvas>
+
+			<a href="#" class="b-prophecy-article-pictures-link b-prophecy-article-pictures-left-link g-hidden" data-snowglobe-action="true" data-snowglobe-action-descriptor="previous-character">Влево</a>
+			<a href="#" class="b-prophecy-article-pictures-link b-prophecy-article-pictures-right-link g-hidden" data-snowglobe-action="true" data-snowglobe-action-descriptor="next-character">Вправо</a>
+
+			<a href="#" class="b-form-submit-field b-prophecy-article-pictures-shake-link g-hidden" data-snowglobe-action="true" data-snowglobe-action-descriptor="shake">Потрясти</a>
+
+		</div>
+
+		<div class="b-prophecy-article-figures-section b-prophecy-article-intro-section" data-snowglobe-screen="true" data-snowglobe-screen-descriptor="beforestart">
+
+			<h2 class="b-prophecy-article-intro-title">Получи новогоднее предсказание!</h2>
+
+			<p class="b-prophecy-article-intro-paragraph">Создай свой новогодний шар.</p>
+
+			<p class="b-prophecy-article-intro-paragraph">Потряси его и волшебство снежинок откроет тебе тайну следующего года!</p>
+
+			<a href="#" class="b-prophecy-article-link b-form-submit-field" data-snowglobe-action="true" data-snowglobe-action-descriptor="start">Начать</a>
+		</div>
+
+
+		<!-- prophecy — title -->
+		<div class="b-prophecy-article-figures-section g-hidden" data-snowglobe-screen="true" data-snowglobe-screen-descriptor="character">
+			<h2 class="b-prophecy-article-figures-description">1. Выберите фигурку</h2>
+
+			<ul class="b-prophecy-article-figures-collection" data-snowglobe-tab="true">
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pirat.png">
+					<img src="/i/figures/pirat.png" alt="Пиратка Карибского джакузи" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frog.png">
+					<img src="/i/figures/frog.png" alt="Хипстер Фрог" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause b-prophecy-article-figures-collection-current-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/gingerbreadMan.png">
+					<img src="/i/figures/gingerbreadMan.png" height="97" width="60" alt="Пряничный человечек" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frankenstein.png">
+					<img src="/i/figures/frankenstein.png" alt="Франкенштейн" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/monstro.png">
+					<img src="/i/figures/monstro.png" alt="Корпорация монстров" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pig.png">
+					<img src="/i/figures/pig.png" height="105" width="72" alt="Стильный поросенок" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/deer.png">
+					<img src="/i/figures/deer.png" height="99" width="61" alt="Олень Деда Мороза" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+
+			</ul>
+			<ul class="b-prophecy-article-figures-collection g-hidden" data-snowglobe-tab="true">
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pirat.png">
+					<img src="/i/figures/pirat.png" alt="Пиратка Карибского джакузи" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frog.png">
+					<img src="/i/figures/frog.png" alt="Хипстер Фрог" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/gingerbreadMan.png">
+					<img src="/i/figures/gingerbreadMan.png" height="97" width="60" alt="Пряничный человечек" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frankenstein.png">
+					<img src="/i/figures/frankenstein.png" alt="Франкенштейн" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/monstro.png">
+					<img src="/i/figures/monstro.png" alt="Корпорация монстров" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pig.png">
+					<img src="/i/figures/pig.png" height="105" width="72" alt="Стильный поросенок" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/deer.png">
+					<img src="/i/figures/deer.png" height="99" width="61" alt="Олень Деда Мороза" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+
+			</ul>
+			<ul class="b-prophecy-article-figures-collection g-hidden" data-snowglobe-tab="true">
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pirat.png">
+					<img src="/i/figures/pirat.png" alt="Пиратка Карибского джакузи" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frog.png">
+					<img src="/i/figures/frog.png" alt="Хипстер Фрог" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/gingerbreadMan.png">
+					<img src="/i/figures/gingerbreadMan.png" height="97" width="60" alt="Пряничный человечек" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frankenstein.png">
+					<img src="/i/figures/frankenstein.png" alt="Франкенштейн" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/monstro.png">
+					<img src="/i/figures/monstro.png" alt="Корпорация монстров" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pig.png">
+					<img src="/i/figures/pig.png" height="105" width="72" alt="Стильный поросенок" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/deer.png">
+					<img src="/i/figures/deer.png" height="99" width="61" alt="Олень Деда Мороза" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+
+			</ul>
+			<ul class="b-prophecy-article-figures-collection g-hidden" data-snowglobe-tab="true">
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pirat.png">
+					<img src="/i/figures/pirat.png" alt="Пиратка Карибского джакузи" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frog.png">
+					<img src="/i/figures/frog.png" alt="Хипстер Фрог" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/gingerbreadMan.png">
+					<img src="/i/figures/gingerbreadMan.png" height="97" width="60" alt="Пряничный человечек" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/frankenstein.png">
+					<img src="/i/figures/frankenstein.png" alt="Франкенштейн" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/monstro.png">
+					<img src="/i/figures/monstro.png" alt="Корпорация монстров" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/pig.png">
+					<img src="/i/figures/pig.png" height="105" width="72" alt="Стильный поросенок" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/deer.png">
+					<img src="/i/figures/deer.png" height="99" width="61" alt="Олень Деда Мороза" class="b-prophecy-article-figures-collection-picture">
+				</li>
+				<li class="b-prophecy-article-figures-collection-clause" data-snowglobe-character="true" data-snowglobe-character-src="/i/figures/superman.png">
+					<img src="/i/figures/superman.png" alt="Супермен" class="b-prophecy-article-figures-collection-picture">
+				</li>
+
+			</ul>
+
+			<ul class="b-prophecy-article-pagination-collection">
+				<li class="b-prophecy-article-pagination-collection-clause b-prophecy-article-pagination-collection-current-clause" data-snowglobe-action="true" data-snowglobe-action-descriptor="tab" data-snowglobe-action-contents="1"><a href="#" class="b-prophecy-article-pagination-collection-link">1</a></li>
+				<li class="b-prophecy-article-pagination-collection-clause" data-snowglobe-action="true" data-snowglobe-action-descriptor="tab" data-snowglobe-action-contents="2"><a href="#" class="b-prophecy-article-pagination-collection-link">2</a></li>
+				<li class="b-prophecy-article-pagination-collection-clause" data-snowglobe-action="true" data-snowglobe-action-descriptor="tab" data-snowglobe-action-contents="3"><a href="#" class="b-prophecy-article-pagination-collection-link">3</a></li>
+				<li class="b-prophecy-article-pagination-collection-clause" data-snowglobe-action="true" data-snowglobe-action-descriptor="tab" data-snowglobe-action-contents="4"><a href="#" class="b-prophecy-article-pagination-collection-link">4</a></li>
+			</ul>
+
+			<a href="#" class="b-prophecy-article-link b-form-submit-field" data-snowglobe-action="true" data-snowglobe-action-descriptor="shakescreen">Выбрать</a>
+		</div>
+
+		<!-- prophecy — shake -->
+
+		<div class="b-prophecy-article-figures-section g-hidden">
+		<!-- TODO блок дублирую для упрощения верстки, впоследствии удалить, содержимое перенести   --> 
+			<h2 class="b-prophecy-article-figures-description">2. Твое предсказание</h2>
+			<!--  -->
+			<div class="b-prophecy-article-content-section">
+			</div>
+
+		</div>
+		<!-- prophecy — result -->
+		<div class="b-prophecy-article-figures-section g-hidden" data-snowglobe-screen="true" data-snowglobe-screen-descriptor="shakescreen">
+		<!-- TODO блок дублирую для упрощения верстки, впоследствии удалить, содержимое перенести   --> 
+			<h2 class="b-prophecy-article-figures-description">2. Твое предсказание</h2>
+
+			<div class="b-prophecy-article-content-section">
+				<div class="b-prophecy-article-content-section-inside" data-snowglobe-prophecy-placeholder="true">
+					<p class="b-prophecy-article-content-paragraph">Чтобы получить предсказание потрясите шар</p>
+				</div>
+				<h3 class="b-prophecy-article-content-title g-hidden" data-snowglobe-prophecy-title="true">В новом году тебя ждут:</h3>
+				<p class="b-prophecy-article-content-paragraph" data-snowglobe-prophecy="true"></p>
+			</div>
+
+			<dl class="b-prophecy-article-social-collection g-hidden" data-snowglobe-share="true">
+				<dt class="b-prophecy-article-social-collection-title">Поделиться с друзьями</dt>
+				<dd class="b-prophecy-article-social-collection-clause">
+					<a href="#" class="b-prophecy-article-social-collection-link b-prophecy-article-social-collection-fb-link">Fb</a>
+				</dd>
+				<dd class="b-prophecy-article-social-collection-clause">
+					<a href="$" class="b-prophecy-article-social-collection-link b-prophecy-article-social-collection-vk-link">Vk</a>
+				</dd>
+				<dd class="b-prophecy-article-social-collection-clause">
+					<a href="$" class="b-prophecy-article-social-collection-link b-prophecy-article-social-collection-od-link">Od</a>
+				</dd>
+			</dl>
+
+			<a href="#" class="b-form-submit-field b-prophecy-article-social-collection-share-link g-hidden" data-snowglobe-action="true" data-snowglobe-action-descriptor="character">Попробовать еще раз</a>
+
+		</div>
+
+	</article>
+
+</body>
+</html>
